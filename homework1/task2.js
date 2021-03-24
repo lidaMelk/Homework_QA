@@ -18,22 +18,21 @@
 // }
 
 // THE NEW VERSION
+
 function addWithDelay(...rest) {
-    const pro = new Promise((resolve, reject) => {
-        const arrayLikeArguments = [...rest];
-        let argumentsSum = 0;
-        arrayLikeArguments.map((x) => {
-            if (x < 0) {
-                reject('Error! Some parameter is a negative number!');
-            }
-            argumentsSum += x;
-            setTimeout(() => {
-                resolve(argumentsSum);
-            }, 1000);
-        });
-    });
-    pro.then(result => console.log(result),
-        err => console.log(err));
+    new Promise((resolve, reject) => {
+            let argumentsSum = 0;
+            rest.map((x) => {
+                if (x < 0) {
+                    reject('Error! Some parameter is a negative number!');
+                }
+                argumentsSum += x;
+                setTimeout(() => {
+                    resolve(argumentsSum);
+                }, 1000);
+            });
+        })
+        .then(result => console.log(result), err => console.log(err));
 }
 addWithDelay(1, 2, 3, 4, -5);
 addWithDelay(1, 2, 3, 4, 5);
